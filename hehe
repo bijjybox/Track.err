@@ -1,0 +1,22 @@
+Container(
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    title: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Amritsar Express'),
+                            Text('11000',style: TextStyle(color: Colors.red),),
+                            Text('135'),
+                            Text('140'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
