@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'livestatus.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
@@ -6,6 +10,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  Future<Map> _data = getres();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -13,8 +20,8 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Track.err",
-            style: TextStyle(color: Colors.amber),
+            "TRACK.ERR",
+            style: TextStyle(color: Colors.lightBlue),
           ),
           centerTitle: true,
           backgroundColor: Colors.black,
@@ -31,15 +38,16 @@ class _HomeState extends State<Home> {
             Tab(icon: Icon(Icons.short_text))
           ]),
         ),
-
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
-              UserAccountsDrawerHeader(accountName: Text('PURNIKA'),currentAccountPicture: CircleAvatar(),)
+              UserAccountsDrawerHeader(
+                accountName: Text('PURNIKA'),
+                currentAccountPicture: CircleAvatar(),
+              )
             ],
           ),
         ),
-
         body: TabBarView(
           children: [
             //TRAIN SPEED WEIGHT
@@ -49,23 +57,24 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   ListTile(
                     title: Card(
+                      color: Colors.lightBlue,
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Row(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('Amritsar Express'),
-                            Text(
-                              '11000',
-                              style: TextStyle(color: Colors.red),
-                            ),
-                            Text('135'),
-                            Text('140'),
+                            FlatButton(
+                                onPressed: null,
+                                child: Text(
+                                  'LIVE TRAIN STATUS',
+                                  style: TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                ))
                           ],
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -73,23 +82,68 @@ class _HomeState extends State<Home> {
             //RESCHEDULES
 
             Container(
-              child: Text('All resceduled'),
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                      title: Container(
+                    child: Text(
+                      'RECENTLY RESCHEDULED TRAINS',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.lightBlue.shade800),
+                    ),
+                  )),
+                ],
+              ),
             ),
 
             //DIVERSIONS
-
             Container(
-              child: Text('diverted trains'),
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                      title: Container(
+                    child: Text(
+                      'ROUTE DIVERSIONS',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.lightBlue.shade800),
+                    ),
+                  )),
+                ],
+              ),
             ),
 
             //TRACKS
 
             Container(
-              child: Text('Track status'),
-            )
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                      title: Container(
+                    child: Text(
+                      'TRACK STATUS',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.lightBlue.shade800),
+                    ),
+                  )),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+Future<Map> getres() async {
+  String api =
+      'https://api.railwayapi.com/v2/rescheduled/date/25-06-2017/apikey/ba7wns3axj/';
+  http.Response response = await http.get(api);
+  return json.decode(response.body);
 }
