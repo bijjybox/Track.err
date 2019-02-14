@@ -1,0 +1,19 @@
+With this project we cater to the problem of increasing number of train derailment accidents in the country.
+
+Our project contains a hardware model and a software that integrates real-time data on cloud and an app to monitor the safe commuting of trains.
+
+The basic features of the system: *       
+controls the speed of trains according to the running weight (Realtime comparison of speed according to the current weight of the train, with the maximum persmissible speed predicted by Artificial Neural Networks ) to prevent track damage and eventually, train derailments. 
+*      calculates the maximum safe speed on the curves and angles along the course of the track for smooth functioning *      
+if running speed is detected to be greater than the permissible speed , a passive screen alert is given to the driver *     
+ detects cracks and faults in the tracks if present and alerts accordingly. (using Ultrasonic Sensors and GPS Module interfacing) *
+ In case of any delay of a particular train, the system also gives a screen alert to the succeeding trains on the same track to adjust their speed accordingly. (using Ultrasonic Sensors and Cloud). This will prevent train collisions due to faulty timings.
+
+The advanced features: *   
+ predicts any new cracks and faults that may occur in future (using Artificial Intelligence) *     provides access to all the train logs through a monitoring App
+
+This app will provide a visual overlay with real time location-speed plotting and a database of all the past speed logs of trains which will help monitor them and help in notifying and investigation of any accident. The app will allow Railway authorities to have a real-time monitoring of speed-weight misjudgements.
+
+The constraints incurred by our project shall be: * reduced availability of data for special routes/trains * poor satellite connection for GPS * sudden weather calamity, if occurs
+
+Tech Stack : Flutter, Python/Django, Deep learning, Raspberry pi 3, Arduino, Sensors.

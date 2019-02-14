@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'realtime.dart';
 
 class live extends StatefulWidget {
   @override
@@ -31,15 +32,25 @@ class _liveState extends State<live> {
                       children: <Widget>[
                         TextField(
                           controller: _trainname,
-                          decoration:
-                              InputDecoration(labelText: "Train name/number",fillColor: Colors.white),
+                          decoration: InputDecoration(
+                              labelText: "Train name/number",
+                              fillColor: Colors.white),
                         ),
                         TextField(
                           controller: _startdate,
-                          decoration:
-                              InputDecoration(labelText: "Start Date"),
+                          decoration: InputDecoration(labelText: "Start Date"),
                         ),
-                        RaisedButton(onPressed: null,child: Text('Continue'),)
+                        RaisedButton(
+                          onPressed: () {
+                            var routs = MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return real();
+                            });
+
+                            Navigator.of(context).push(routs);
+                          },
+                          child: Text('Continue'),
+                        )
                       ],
                     ),
                   ),
