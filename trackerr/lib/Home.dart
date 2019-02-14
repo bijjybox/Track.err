@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'livestatus.dart';
+import 'livefill.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   Future<Map> _data = getres();
 
   @override
@@ -64,7 +63,14 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             FlatButton(
-                                onPressed: null,
+                                onPressed: () {
+                                  var router = MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return live();
+                                  });
+
+                                  Navigator.of(context).push(router);
+                                },
                                 child: Text(
                                   'LIVE TRAIN STATUS',
                                   style: TextStyle(
